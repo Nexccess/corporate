@@ -1285,7 +1285,7 @@
 
       <div id="contact-form-container">
         <div class="form-notice">
-          ※ フォームはFormspree経由で <code>info@nexccess.com</code> に転送されます
+          ※ 送信内容は <code>info@nexccess.com</code> に届きます
         </div>
         <div id="form-fields">
           <div class="field-row two-col">
@@ -1371,9 +1371,8 @@
 </script>
 
 <script>
-// ★ FormspreeのエンドポイントURLをここに貼る
-// 例: https://formspree.io/f/xxxxxxxx
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mykbrnvr';
+// Web3Forms — 送信先: info@nexccess.com
+const WEB3FORMS_KEY = '627bc7c7-f1c4-40c8-9d7d-acea3e7a4bd6';
 
 async function submitForm() {
   const name    = document.getElementById('f-name').value.trim();
@@ -1384,7 +1383,6 @@ async function submitForm() {
   const privacy = document.getElementById('f-privacy').checked;
   const errEl   = document.getElementById('form-error');
 
-  // Validation
   errEl.style.display = 'none';
   if (!name || !email || !type || !message) {
     errEl.textContent = '必須項目（*）をすべてご入力ください。';
@@ -1409,37 +1407,32 @@ async function submitForm() {
   btn.disabled = true;
 
   try {
-    const res = await fetch(FORMSPREE_ENDPOINT, {
+    const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        name, company, email,
+        access_key: WEB3FORMS_KEY,
+        name, email,
+        subject: `[Nexccess] お問い合わせ：${type}`,
+        company,
         inquiry_type: type,
         message,
-        _subject: `[Nexccess] お問い合わせ：${type}`
+        from_name: 'Nexccess お問い合わせフォーム'
       })
     });
-    // ok or CORSで200が取れない場合も送信成功扱いにする
-    if (res.ok || res.status === 0 || res.type === 'opaque') {
+    const data = await res.json();
+    if (data.success) {
       document.getElementById('contact-form-container').style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
     } else {
-      const data = await res.json().catch(() => ({}));
-      throw new Error(data.error || '送信失敗');
+      throw new Error(data.message || '送信失敗');
     }
   } catch(e) {
-    // ネットワークエラー・CORSでも、fetchが投げられた後にデータは届いている可能性がある
-    // → 成功扱いにして完了画面を出す
-    if (e.name === 'TypeError' || e.message.includes('Failed to fetch') || e.message.includes('NetworkError')) {
-      document.getElementById('contact-form-container').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-    } else {
-      errEl.textContent = '送信に失敗しました。時間をおいて再度お試しいただくか、メールにてご連絡ください。';
-      errEl.style.display = 'block';
-      document.getElementById('submit-label').style.display = 'inline';
-      document.getElementById('submit-spinner').style.display = 'none';
-      btn.disabled = false;
-    }
+    errEl.textContent = '送信に失敗しました。時間をおいて再度お試しいただくか、メールにてご連絡ください。';
+    errEl.style.display = 'block';
+    document.getElementById('submit-label').style.display = 'inline';
+    document.getElementById('submit-spinner').style.display = 'none';
+    btn.disabled = false;
   }
 }
 
