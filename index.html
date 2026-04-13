@@ -747,8 +747,6 @@
     .tool-inner { grid-template-columns: 1fr; }
     .profile-inner { grid-template-columns: 1fr; }
     .company-grid { grid-template-columns: 1fr; }
-    nav { padding: 16px 24px; }
-    .nav-links { gap: 20px; }
     section { padding: 72px 6%; }
   }
 
@@ -1450,7 +1448,17 @@
     </tr>
     <tr>
       <th>事業内容</th>
-      <td>経営・財務コンサルティング<br>資金調達コンサルティング<br>個人向け資産形成・管理業務<br>相続対策<br>企業への投融資<br>有価証券への投資・保有<br>不動産の売買・保有・管理・運用</td>
+      <td>
+        <ul class="company-biz-list">
+          <li>経営・財務コンサルティング</li>
+          <li>資金調達コンサルティング</li>
+          <li>資産管理業務</li>
+          <li>相続対応業務</li>
+          <li>企業への投融資</li>
+          <li>有価証券への投資・保有</li>
+          <li>不動産の売買・保有・管理・運用</li>
+        </ul>
+      </td>
     </tr>
     <tr>
       <th>対応エリア</th>
@@ -1495,7 +1503,7 @@
       <div class="contact-info-list">
         <div class="contact-info-item">
           <div class="contact-info-label">✉　E-mail</div>
-          <div class="contact-info-val">info@nexccess.com</div>
+          <div class="contact-info-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d74737b725d7378657e7e786e6e337e7270">[email&#160;protected]</a></div>
         </div>
         <div class="contact-info-item">
           <div class="contact-info-label">🔒　LINE WORKS</div>
@@ -1527,7 +1535,7 @@
 
       <div id="contact-form-container">
         <div class="form-notice">
-          ※ 送信内容は <code>info@nexccess.com</code> に届きます
+          ※ 送信内容は <code><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dab3b4bcb59ab4bfa2b9b9bfa9a9f4b9b5b7">[email&#160;protected]</a></code> に届きます
         </div>
         <div id="form-fields">
           <div class="field-row two-col">
@@ -1674,7 +1682,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Nav scroll effect
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => {
@@ -1802,17 +1810,4 @@ function closeModal(id) {
   document.getElementById(id).classList.remove('active');
   document.body.style.overflow = '';
 }
-function closeModalOutside(event, id) {
-  if (event.target === document.getElementById(id)) closeModal(id);
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.modal-overlay.active').forEach(m => {
-      m.classList.remove('active');
-    });
-    document.body.style.overflow = '';
-  }
-});
-</script>
-</body>
-</html>
+function closeModalOutside(
