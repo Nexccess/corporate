@@ -1267,6 +1267,82 @@
     .issues-grid { grid-template-columns: 1fr; }
     .issue-card { padding: 36px 28px; }
   }
+  /* ── PRODUCTS ── */
+  #products { padding: 100px 8%; }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+  .product-card {
+    display: block;
+    text-decoration: none;
+    padding: 48px 40px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(200,164,90,0.15);
+    transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--crimson);
+    transition: height 0.4s;
+  }
+  .product-card:hover {
+    background: rgba(122,21,21,0.06);
+    border-color: rgba(122,21,21,0.3);
+    transform: translateY(-3px);
+  }
+  .product-card:hover::before { height: 100%; }
+  .product-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    border: 1px solid rgba(200,164,90,0.4);
+    padding: 4px 12px;
+    margin-bottom: 24px;
+    font-family: 'Noto Serif JP', serif;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .product-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    margin-bottom: 20px;
+    opacity: 0.8;
+  }
+  .product-desc {
+    font-size: 0.82rem;
+    color: var(--cream-dim);
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    margin-bottom: 28px;
+  }
+  .product-arrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-family: 'Noto Serif JP', serif;
+    transition: letter-spacing 0.3s;
+  }
+  .product-card:hover .product-arrow { letter-spacing: 0.28em; }
+  @media (max-width: 768px) {
+    .products-grid { grid-template-columns: 1fr; }
+    .product-card { padding: 36px 28px; }
+  }
 </style>
 </head>
 <body>
@@ -1281,7 +1357,8 @@
   </button>
   <ul class="nav-links" id="navLinks">
     <li><a href="#services">Services</a></li>
-    <li><a href="#tool">診断ツール</a></li>
+    <li><a href="#tools">診断ツール</a></li>
+    <li><a href="#products">Products</a></li>
     <li><a href="#profile">Profile</a></li>
     <li><a href="#company">Company</a></li>
     <li><a href="#contact" style="color:var(--gold);">Contact</a></li>
@@ -1305,59 +1382,13 @@
     <p class="hero-tagline">経営・財務・法務アドバイザリー｜不動産投資・資産管理｜独自スコアリングエンジン</p>
     <p class="hero-catch">「評論家ではなく、事業を動かすプレイングマネージャー」</p>
     <div class="hero-cta">
-      <a href="#issues" class="btn-primary">課題から探す</a>
+      <a href="#tools" class="btn-primary">課題から探す</a>
       <a href="#company" class="btn-outline">お問い合わせ</a>
     </div>
   </div>
   <div class="hero-scroll">
     <span>Scroll</span>
     <div class="hero-scroll-line"></div>
-  </div>
-</section>
-
-<!-- ISSUES NAV -->
-<section id="issues">
-  <div class="section-header">
-    <div class="section-num">00</div>
-    <div class="section-label">
-      <div class="section-label-en">Find Your Issue</div>
-      <div class="section-label-jp">課題から探す</div>
-    </div>
-  </div>
-  <div class="divider"></div>
-  <p class="issues-lead">
-    まず、あなたが抱えている課題を選んでください。<br>
-    それぞれの専用ページで、詳しくご説明しています。
-  </p>
-  <div class="issues-grid">
-    <a href="https://keiei.nexccess.com" class="issue-card fade-in" target="_blank" rel="noopener">
-      <div class="issue-num">01</div>
-      <div class="issue-title">経営・資金調達</div>
-      <div class="issue-subtitle">Management & Fundraising</div>
-      <p class="issue-desc">PMI・組織再編・資金調達・スタートアップ体制整備。経営の現場に入り込み、判断を整理します。</p>
-      <div class="issue-arrow">詳しく見る →</div>
-    </a>
-    <a href="https://souzoku.nexccess.com" class="issue-card fade-in" target="_blank" rel="noopener" style="transition-delay:0.1s">
-      <div class="issue-num">02</div>
-      <div class="issue-title">相続・事業承継</div>
-      <div class="issue-subtitle">Inheritance & Succession</div>
-      <p class="issue-desc">相続発生前後の対策から、複雑な案件の事後処理まで。CFPと実務経験を持つ代表が直接対応します。</p>
-      <div class="issue-arrow">詳しく見る →</div>
-    </a>
-    <a href="https://demoscoring.nexccess.com/" class="issue-card fade-in" target="_blank" rel="noopener" style="transition-delay:0.2s">
-      <div class="issue-num">03</div>
-      <div class="issue-title">融資・資金調達の判断</div>
-      <div class="issue-subtitle">Financing & Scoring</div>
-      <p class="issue-desc">銀行融資の可否を、現場の論理で整理します。スコアリングエンジンを使った診断サービス。</p>
-      <div class="issue-arrow">詳しく見る →</div>
-    </a>
-    <a href="https://column.nexccess.com" class="issue-card issue-card--muted fade-in" target="_blank" rel="noopener" style="transition-delay:0.3s">
-      <div class="issue-num">04</div>
-      <div class="issue-title">思想・判断の記録</div>
-      <div class="issue-subtitle">Column & Thinking</div>
-      <p class="issue-desc">代表が考えたことの記録。判断の前提条件になる考え方を、ゆっくり読んでいただくための場所です。</p>
-      <div class="issue-arrow">コラムを読む →</div>
-    </a>
   </div>
 </section>
 
@@ -1413,86 +1444,73 @@
   </div>
 </section>
 
-<!-- TOOL -->
-<section id="tool">
-  <div class="tool-bg-accent"></div>
+<!-- TOOLS -->
+<section id="tools">
   <div class="section-header">
     <div class="section-num">02</div>
     <div class="section-label">
-      <div class="section-label-en">Scoring Engine</div>
-      <div class="section-label-jp">銀行融資スコアリングエンジン</div>
+      <div class="section-label-en">Diagnosis Tools</div>
+      <div class="section-label-jp">診断ツール</div>
     </div>
   </div>
   <div class="divider"></div>
+  <div class="issues-grid">
+    <a href="https://keiei.nexccess.com" class="issue-card fade-in" target="_blank" rel="noopener">
+      <div class="issue-num">01</div>
+      <div class="issue-title">経営・資金調達</div>
+      <div class="issue-subtitle">Management & Fundraising</div>
+      <p class="issue-desc">PMI・組織再編・資金調達・スタートアップ体制整備。経営の現場に入り込み、判断を整理します。</p>
+      <div class="issue-arrow">詳しく見る →</div>
+    </a>
+    <a href="https://souzoku.nexccess.com" class="issue-card fade-in" target="_blank" rel="noopener" style="transition-delay:0.1s">
+      <div class="issue-num">02</div>
+      <div class="issue-title">相続・事業承継</div>
+      <div class="issue-subtitle">Inheritance & Succession</div>
+      <p class="issue-desc">相続発生前後の対策から、複雑な案件の事後処理まで。CFPと実務経験を持つ代表が直接対応します。</p>
+      <div class="issue-arrow">詳しく見る →</div>
+    </a>
+    <a href="https://demoscoring.nexccess.com/" class="issue-card fade-in" target="_blank" rel="noopener" style="transition-delay:0.2s">
+      <div class="issue-num">03</div>
+      <div class="issue-title">融資・資金調達の判断</div>
+      <div class="issue-subtitle">Financing & Scoring</div>
+      <p class="issue-desc">銀行融資の可否を、現場の論理で整理します。スコアリングエンジンを使った診断サービス。</p>
+      <div class="issue-arrow">詳しく見る →</div>
+    </a>
+    <a href="https://column.nexccess.com" class="issue-card issue-card--muted fade-in" target="_blank" rel="noopener" style="transition-delay:0.3s">
+      <div class="issue-num">04</div>
+      <div class="issue-title">思想・判断の記録</div>
+      <div class="issue-subtitle">Column & Thinking</div>
+      <p class="issue-desc">代表が考えたことの記録。判断の前提条件になる考え方を、ゆっくり読んでいただくための場所です。</p>
+      <div class="issue-arrow">コラムを読む →</div>
+    </a>
+  </div>
+</section>
 
-  <div class="tool-inner">
-    <div class="tool-text fade-in">
-      <div class="tool-badge">Proprietary Tool — Beta</div>
-      <h3>金融機関経験者が設計した<br>金融機関ロジックに基づいたスコアリング</h3>
-      <p>本部制度設計経験を活かした元金融機関経験者が構築した信用スコアリングシステム。<br>銀行の格付け理論をシステム化し、融資可否の予測・財務改善シミュレーションを提供します。</p>
-      <p>ファクタリング・融資（紹介）事業者向けには製品版の導入・販売にも対応。</p>
-      <div class="tool-features">
-        <div class="tool-feature">
-          <div class="tool-feature-title">スコアリング</div>
-          <div class="tool-feature-desc">線形補間による高精度スコア算定</div>
-        </div>
-        <div class="tool-feature">
-          <div class="tool-feature-title">自動振り分け</div>
-          <div class="tool-feature-desc">融資・ファクタリングの可否・傾向分析</div>
-        </div>
-        <div class="tool-feature">
-          <div class="tool-feature-title">警告フラグ</div>
-          <div class="tool-feature-desc">リスク指標の自動検出と通知</div>
-        </div>
-        <div class="tool-feature">
-          <div class="tool-feature-title">シミュレーション</div>
-          <div class="tool-feature-desc">財務改善シナリオの試算機能</div>
-        </div>
-      </div>
-      <div class="tool-cta">
-        <a href="https://demoscoring.nexccess.com//" target="_blank" class="btn-primary">デモ版を試す（無料）</a>
-      </div>
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div class="section-label">
+      <div class="section-label-en">Products</div>
+      <div class="section-label-jp">商品</div>
     </div>
-    <div class="tool-preview fade-in" style="transition-delay:0.2s">
-      <div class="tool-preview-header">
-        <div class="tool-preview-dot" style="background:#e05c5c"></div>
-        <div class="tool-preview-dot" style="background:#e0c05c"></div>
-        <div class="tool-preview-dot" style="background:#5ce07a"></div>
-        <span style="font-size:0.68rem;color:var(--cream-dim);margin-left:8px;letter-spacing:0.1em">nexccess.github.io / scoring-app</span>
-      </div>
-      <div class="tool-preview-body">
-        <div class="score-meter">
-          <div class="score-number">72</div>
-          <div class="score-label">Credit Score</div>
-          <div class="score-bar-wrap"><div class="score-bar"></div></div>
-        </div>
-        <div class="score-metrics">
-          <div class="score-row">
-            <span>実態自己資本比率</span>
-            <span class="score-val">38.4%</span>
-          </div>
-          <div class="score-row">
-            <span>債務償還年数</span>
-            <span class="score-val">6.2年</span>
-          </div>
-          <div class="score-row">
-            <span>インタレスト・カバレッジ</span>
-            <span class="score-val">3.8x</span>
-          </div>
-          <div class="score-row">
-            <span>判定ルート</span>
-            <span class="score-val" style="color:#5ce07a">自社ファクタリング</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="products-grid">
+    <a href="https://www.pathflow.org/" class="product-card fade-in" target="_blank" rel="noopener">
+      <div class="product-badge">IT導入補助金 最大450万円 対応</div>
+      <div class="product-name">PathFlow</div>
+      <div class="product-subtitle">AI × 事前相談自動化プラットフォーム</div>
+      <p class="product-desc">金融機関で培った「課題の整理の仕方」をAIに実装した。事前診断・相談・予約までの工数を自動化し、顧客に考えるきっかけと道しるべを示す。営業・採用・医療・士業――相談コストが重い業種であれば、そのまま横展開できる。プッシュしないから、成約率は落ちない。むしろリピートしやすく、ファンになりやすい。</p>
+      <div class="product-arrow">サイトを見る →</div>
+    </a>
   </div>
 </section>
 
 <!-- PROFILE -->
 <section id="profile">
   <div class="section-header">
-    <div class="section-num">03</div>
+    <div class="section-num">04</div>
     <div class="section-label">
       <div class="section-label-en">Profile</div>
       <div class="section-label-jp">代表プロフィール</div>
@@ -1557,7 +1575,7 @@
 <!-- COMPANY & CONTACT -->
 <section id="company">
   <div class="section-header">
-    <div class="section-num">04</div>
+    <div class="section-num">05</div>
     <div class="section-label">
       <div class="section-label-en">Company</div>
       <div class="section-label-jp">会社概要</div>
@@ -1624,7 +1642,7 @@
 <!-- CONTACT FORM -->
 <section id="contact" style="background:var(--navy-mid); padding-top:80px; padding-bottom:100px;">
   <div class="section-header">
-    <div class="section-num">05</div>
+    <div class="section-num">06</div>
     <div class="section-label">
       <div class="section-label-en">Contact</div>
       <div class="section-label-jp">お問い合わせ</div>
@@ -1736,7 +1754,7 @@
           <div class="footer-col-title">NAVIGATION</div>
           <ul class="footer-links">
             <li><a href="#services">Services</a></li>
-            <li><a href="#tool">診断ツール</a></li>
+            <li><a href="#tools">課題から探す</a></li>
             <li><a href="#profile">Profile</a></li>
             <li><a href="#company">Company</a></li>
             <li><a href="#contact">Contact</a></li>
